@@ -1,4 +1,4 @@
-﻿using Caseopgave.CoreFunktionalitet.Models;
+﻿using Caseopgave.CoreFunktionalitet.Repositories;
 
 namespace Caseopgave.Api.Services;
 
@@ -13,19 +13,27 @@ public interface IParkingService
 
 sealed class ParkingService : IParkingService
 {
-    public Task DeleteAllRegisteredParkings(string numberPlate)
+    private readonly IParkingRepository repository;
+
+    public ParkingService(IParkingRepository repository)
     {
-        throw new NotImplementedException();
+        this.repository = repository;
     }
 
-    public Task<bool> IsCarRegisteredForLot(string numberPlate, string lot)
+    public async Task DeleteAllRegisteredParkings(string numberPlate)
     {
-        throw new NotImplementedException();
+        var parkingsToDelete = (await repository.GetAll()).Where(parking => parking.NumberPlate == numberPlate);
+        await repository.Delete(parkingsToDelete.ToArray());
     }
 
-    public Task RegisterParking(Parking parking)
+    public async Task<bool> IsCarRegisteredForLot(string numberPlate, string lot)
     {
-        throw new NotImplementedException();
+        return (await repository.GetAll()).Any(parking => parking.NumberPlate == numberPlate && parking.Lot == lot);
+    }
+
+    public async Task RegisterParking(Parking parking)
+    {
+        await repository.Insert(parking); 
     }
 }
 

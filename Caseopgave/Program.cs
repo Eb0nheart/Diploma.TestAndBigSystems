@@ -1,10 +1,13 @@
 using Caseopgave.Api.DTO;
 using Caseopgave.Api.Services;
+using Caseopgave.CoreFunktionalitet;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IParkingService, ParkingService>();
+builder.Services
+    .AddSingleton<IParkingService, ParkingService>()
+    .AddCoreFunctionality();
 
 var app = builder.Build();
 
@@ -17,7 +20,7 @@ app.MapGet("/isCarRegistered", async ([FromServices] IParkingService service, [F
 
 app.MapPost("/registerParking", async ([FromServices] IParkingService service, [FromBody] PostParkingRequest body) =>
 {
-    await service.RegisterParking(new Parking(DateTime.Now, body.NumberPlate, body.Lot));
+    await service.RegisterParking(new Parking(DateTime.Now, body.NumberPlate, body.Lot, body.Email));
     return StatusCodes.Status201Created;
 });
 
