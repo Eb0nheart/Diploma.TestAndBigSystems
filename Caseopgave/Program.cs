@@ -2,12 +2,23 @@ using Caseopgave.Api.DTO;
 using Caseopgave.Api.Services;
 using Caseopgave.CoreFunktionalitet;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services
-    .AddSingleton<IParkingService, ParkingService>()
-    .AddCoreFunctionality();
+builder
+    .Host
+    .ConfigureServices((context,services) =>
+    {
+        services
+        .AddLogging()
+            .AddCoreFunctionality((options) => context.Configuration.GetSection(MotorApiOptions.Key).Bind(options))
+            .AddTransient<IParkingService, ParkingService>()
+            .AddHttpClient(); 
+    })
+    .UseSerilog((context, configuration) =>
+    {
+        configuration.WriteTo.Console();
+    });
 
 var app = builder.Build();
 
