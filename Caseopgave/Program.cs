@@ -13,6 +13,8 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.MapGet("/", () => "Hello World!");
+
 app.MapGet("/isCarRegistered", async ([FromServices] IParkingService service, [FromBody] GetParkingRequest body) =>
 {
     return await service.IsCarRegisteredForLot(body.NumberPlate, body.Lot);
