@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  caseopgave.api:
+    image: ${DOCKER_REGISTRY-}caseopgaveapi
+    build:
+      context: .
+      dockerfile: Caseopgave/Dockerfile
