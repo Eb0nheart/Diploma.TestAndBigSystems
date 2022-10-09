@@ -35,9 +35,9 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapGet("/events", async ([FromServices] IEventsRepository repository) =>
+app.MapGet("/events", async ([FromBody] IndexDTO index, [FromServices] IEventsRepository repository) =>
 {
-    return await repository.GetEventsAsync();
+    return await repository.GetEventsAsync(index);
 });
 
 await app.RunAsync();
