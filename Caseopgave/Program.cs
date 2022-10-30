@@ -1,6 +1,7 @@
-using Caseopgave.Api.DTO;
-using Caseopgave.Api.Services;
-using Caseopgave.CoreFunktionalitet;
+using BigSystems.Caseopgave.ParkingService.DTO;
+using BigSystems.Caseopgave.ParkingService.Facades;
+using BigSystems.Caseopgave.ParkingService.Repositories;
+using BigSystems.Caseopgave.ParkingService.Services;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -11,8 +12,10 @@ builder
     {
         services
         .AddLogging()
-            .AddCoreFunctionality((options) => context.Configuration.GetSection(MotorApiOptions.Key).Bind(options))
+            .Configure<MotorApiOptions>((options) => context.Configuration.GetSection(MotorApiOptions.Key).Bind(options))
             .AddTransient<IParkingService, ParkingService>()
+            .AddSingleton<IParkingRepository, ParkingRepository>()
+            .AddTransient<IMotorApiFacade, MotorApiFacade>()
             .AddHttpClient(); 
     })
     .UseSerilog((context, configuration) =>
@@ -23,8 +26,6 @@ builder
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
-app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/isCarRegistered", async ([FromServices] IParkingService service, [FromBody] GetParkingRequest body) =>
 {

@@ -1,8 +1,9 @@
-﻿using Caseopgave.EventService.DataAccess;
+﻿using BigSystems.Caseopgave.EventService.DataAccess;
+using BigSystems.Caseopgave.EventService.Models;
 using Confluent.Kafka;
 using Microsoft.Extensions.Options;
 
-namespace Caseopgave.EventService.Services
+namespace BigSystems.Caseopgave.EventService.Services
 {
     public class EventSubscriberOptions
     {

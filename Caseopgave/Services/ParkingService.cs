@@ -1,6 +1,6 @@
-﻿using Caseopgave.CoreFunktionalitet.Repositories;
+﻿using BigSystems.Caseopgave.ParkingService.Repositories;
 
-namespace Caseopgave.Api.Services;
+namespace BigSystems.Caseopgave.ParkingService.Services;
 
 public interface IParkingService
 {
@@ -33,7 +33,7 @@ sealed class ParkingService : IParkingService
 
     public async Task RegisterParking(Parking parking)
     {
-        await repository.Insert(parking); 
+        await repository.Insert(parking);
     }
 }
 

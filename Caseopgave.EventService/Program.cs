@@ -1,5 +1,6 @@
-using Caseopgave.EventService.DataAccess;
-using Caseopgave.EventService.Services;
+using BigSystems.Caseopgave.EventService.DataAccess;
+using BigSystems.Caseopgave.EventService.Models;
+using BigSystems.Caseopgave.EventService.Services;
 using Confluent.Kafka;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;

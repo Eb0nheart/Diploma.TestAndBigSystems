@@ -1,4 +1,6 @@
-﻿namespace Caseopgave.EventService.DataAccess;
+﻿using BigSystems.Caseopgave.EventService.Models;
+
+namespace BigSystems.Caseopgave.EventService.DataAccess;
 
 public class IndexDTO
 {
@@ -29,12 +31,12 @@ sealed class EventsRepository : IEventsRepository
 
     public Task<List<Event>> GetEventsAsync(IndexDTO index)
     {
-        if(index.From > index.Amount)
+        if (index.From > index.Amount)
         {
             throw new InvalidOperationException("To needs to be higher than from!");
         }
 
-        if(index.From != -1 && index.Amount != 00)
+        if (index.From != -1 && index.Amount != 00)
         {
             return Task.FromResult(Repository.GetRange(index.From, index.Amount));
         }

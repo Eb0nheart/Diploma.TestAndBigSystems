@@ -1,4 +1,4 @@
-﻿namespace Caseopgave.Api.DTO;
+﻿namespace BigSystems.Caseopgave.ParkingService.DTO;
 
 public class GetParkingRequest
 {

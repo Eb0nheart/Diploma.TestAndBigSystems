@@ -1,7 +1,8 @@
-﻿using Confluent.Kafka;
+﻿using BigSystems.Caseopgave.EventService.Models;
+using Confluent.Kafka;
 using System.Text;
 
-namespace Caseopgave.EventService.Services;
+namespace BigSystems.Caseopgave.EventService.Services;
 
 public class EventDeserializer : IDeserializer<Event>
 {

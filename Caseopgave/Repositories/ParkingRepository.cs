@@ -1,5 +1,6 @@
-﻿
-namespace Caseopgave.CoreFunktionalitet.Repositories;
+﻿namespace BigSystems.Caseopgave.ParkingService.Repositories;
+
+public record Parking(DateTime Parked, string NumberPlate, string Lot, string Email);
 
 public interface IParkingRepository
 {

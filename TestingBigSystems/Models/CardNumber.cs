@@ -1,4 +1,4 @@
-﻿namespace TestingBigSystems.Models;
+﻿namespace BigSystems.Aflevering1.Models;
 
 public enum CardNumber
 {

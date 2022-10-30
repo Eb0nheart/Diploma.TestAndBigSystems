@@ -1,4 +1,4 @@
-﻿using TestingBigSystems.Models;
+﻿using BigSystems.Aflevering1.Models;
 
 public class StandardCard : Card
 {

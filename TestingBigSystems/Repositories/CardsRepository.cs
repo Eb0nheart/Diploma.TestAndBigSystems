@@ -1,6 +1,6 @@
-﻿using TestingBigSystems.Models;
+﻿using BigSystems.Aflevering1.Models;
 
-namespace TestingBigSystems.Repositories;
+namespace BigSystems.Aflevering1.Repositories;
 
 public interface ICardsRepository
 {
