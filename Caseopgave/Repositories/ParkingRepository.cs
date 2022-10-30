@@ -8,10 +8,10 @@ public interface IParkingRepository
 
     Task Insert(Parking parking);
 
-    Task Delete(params Parking[] parkingsToDelete);
+    Task DeleteAll(IEnumerable<Parking> parkingsToDelete);
 }
 
-sealed class ParkingRepository : IParkingRepository
+public class ParkingRepository : IParkingRepository
 {
     private readonly List<Parking> parkings;
 
@@ -20,7 +20,7 @@ sealed class ParkingRepository : IParkingRepository
         parkings = new List<Parking>();
     }
 
-    public Task Delete(params Parking[] parkingsToDelete)
+    public Task DeleteAll(IEnumerable<Parking> parkingsToDelete)
     {
         foreach (var parking in parkingsToDelete)
         {

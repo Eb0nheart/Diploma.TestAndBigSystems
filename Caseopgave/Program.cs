@@ -1,4 +1,3 @@
-using BigSystems.Caseopgave.ParkingService.DTO;
 using BigSystems.Caseopgave.ParkingService.Facades;
 using BigSystems.Caseopgave.ParkingService.Repositories;
 using BigSystems.Caseopgave.ParkingService.Services;
@@ -45,3 +44,8 @@ app.MapDelete("/deleteregistrations/{numberplate}", async ([FromServices] IParki
 });
 
 app.Run();
+
+#region DTO's
+public record GetParkingRequest(string Lot, string NumberPlate);
+public record PostParkingRequest(string Lot, string NumberPlate, string Email);
+#endregion

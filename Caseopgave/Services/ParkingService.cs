@@ -11,7 +11,7 @@ public interface IParkingService
     Task DeleteAllRegisteredParkings(string numberPlate);
 }
 
-sealed class ParkingService : IParkingService
+public class ParkingService : IParkingService
 {
     private readonly IParkingRepository repository;
 
@@ -23,7 +23,7 @@ sealed class ParkingService : IParkingService
     public async Task DeleteAllRegisteredParkings(string numberPlate)
     {
         var parkingsToDelete = (await repository.GetAll()).Where(parking => parking.NumberPlate == numberPlate);
-        await repository.Delete(parkingsToDelete.ToArray());
+        await repository.DeleteAll(parkingsToDelete.ToArray());
     }
 
     public async Task<bool> IsCarRegisteredForLot(string numberPlate, string lot)

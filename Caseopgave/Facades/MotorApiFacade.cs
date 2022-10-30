@@ -41,8 +41,8 @@ public class MotorApiFacade : IMotorApiFacade
         retryPolicy = Policy.Handle<Exception>().RetryAsync();
     }
 
-    public async Task<CarInformation> GetVehicleInformation(string numberplate)
+    public Task<CarInformation> GetVehicleInformation(string numberplate)
     {
-        return await client.GetFromJsonAsync<CarInformation>($"/vehicles/{numberplate}");
+        return retryPolicy.ExecuteAsync(async () => await client.GetFromJsonAsync<CarInformation>($"/vehicles/{numberplate}"));
     }
 }
