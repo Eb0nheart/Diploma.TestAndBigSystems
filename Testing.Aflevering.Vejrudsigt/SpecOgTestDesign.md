@@ -34,7 +34,7 @@ Hej, Regn
 
 ## Beslutningstabel
 
-De værdier jeg har brugt til testing er de samme som jeg bruger til denne beslutningstabel
+De værdier jeg har brugt til testing er de samme som jeg bruger til denne beslutningstabel. Alle undtagen den sidste er værdier fundet i Grænseværdi analysen, dog medtaget for at teste alle mulige udkom fra programmet.
 
 | Conditions | Temperature | Result                                                       |
 | ---------- | ----------- | ------------------------------------------------------------ |
